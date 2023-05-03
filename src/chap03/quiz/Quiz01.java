@@ -9,7 +9,7 @@ public class Quiz01 {
     // 4) (Integer i) -> return "Alan" + i;
     // 5) (String s) -> {"Iron Man";}
     
-    // result
+    // result -> 4, 5
     // 4) 중괄호를 사용하지 않으면 return 이 작성된 것과 동일하게 작동
     // 5) 중괄호를 사용했으므로 return 을 작성해야함
     
