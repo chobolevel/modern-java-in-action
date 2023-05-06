@@ -6,6 +6,7 @@ import chap04.enums.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Test {
 
@@ -54,5 +55,14 @@ public class Test {
             new Dish("prawns", false, 300, Type.FISH),
             new Dish("salmons", false, 450, Type.FISH)
     );
+    
+    // Stream 예제
+    // result -> 고칼로리 상위 3개 메뉴의 이름만 출력
+    List<String> threeHighCaloricDishes = menu.stream()
+            .filter(dish -> dish.getCalories() > 300)
+            .map(Dish::getName)
+            .limit(3)
+            .collect(Collectors.toList());
+    
 
 }
