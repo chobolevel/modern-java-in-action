@@ -44,7 +44,7 @@ public class Test {
 //            .map(Dish::getName)
 //            .collect(toList());
 
-    private List<Dish> menu = Arrays.asList(
+    private static List<Dish> menu = Arrays.asList(
             new Dish("pork", false, 800, Type.MEAT),
             new Dish("beef", false, 700, Type.MEAT),
             new Dish("chicken", false, 400, Type.MEAT),
@@ -63,6 +63,14 @@ public class Test {
             .map(Dish::getName)
             .limit(3)
             .toList();
-    
+
+    public static void main(String[] args) {
+
+        List<Dish> slicedMenu1 = menu.stream()
+                .takeWhile(d -> d.getCalories() < 1000)
+                .toList();
+        System.out.println(slicedMenu1);
+
+    }
 
 }
