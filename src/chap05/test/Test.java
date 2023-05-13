@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Test {
 
@@ -95,6 +96,11 @@ public class Test {
                 .reduce(1000, Integer::min);
         System.out.println("========== quiz08 ==========");
         System.out.println(min);
+
+        System.out.println("========== infinity stream ==========");
+        Stream.iterate(0, n -> n + 2)
+                .limit(10)
+                .forEach(System.out::println);
 
     }
 
