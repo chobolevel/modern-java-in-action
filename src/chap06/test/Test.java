@@ -3,10 +3,7 @@ package chap06.test;
 import chap04.entity.Dish;
 import chap04.enums.Type;
 
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Test {
@@ -58,6 +55,27 @@ public class Test {
         System.out.println("===== groupingBy mapping =====");
         Map<Type, List<String>> groupingByTypeAndMapping = menu.stream().collect(Collectors.groupingBy(Dish::getType, Collectors.mapping(Dish::getName, Collectors.toList())));
         System.out.println(groupingByTypeAndMapping);
+
+        System.out.println("===== double step grouping =====");
+        Map<Type, Map<CaloricLevel, List<Dish>>> groupingTwoStep = menu.stream()
+                .collect(Collectors.groupingBy(Dish::getType, Collectors.groupingBy(dish -> {
+                    if (dish.getCalories() <= 400) return CaloricLevel.DIET;
+                    else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
+                    else return CaloricLevel.FAT;
+                })));
+        System.out.println(groupingTwoStep);
+
+        System.out.println("===== grouping optional data collect =====");
+        Map<Type, Optional<Dish>> optionalCollect = menu.stream().collect(Collectors.groupingBy(Dish::getType, Collectors.maxBy(Comparator.comparingInt(Dish::getCalories))));
+        System.out.println(optionalCollect);
+
+        System.out.println("===== grouping data collect without Optional =====");
+        Map<Type, Dish> collectWithoutOptional = menu.stream()
+                .collect(Collectors.groupingBy(Dish::getType, Collectors.collectingAndThen(
+                        Collectors.maxBy(Comparator.comparingInt(Dish::getCalories)),
+                        Optional::get
+                )));
+        System.out.println(collectWithoutOptional);
 
     }
 
