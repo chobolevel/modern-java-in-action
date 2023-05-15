@@ -77,6 +77,9 @@ public class Test {
                 )));
         System.out.println(collectWithoutOptional);
 
+        System.out.println("===== processor size =====");
+        System.out.println(Runtime.getRuntime().availableProcessors());
+
     }
 
 }
