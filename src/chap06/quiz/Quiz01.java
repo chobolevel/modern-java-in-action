@@ -26,5 +26,9 @@ public class Quiz01 {
         String result = menu.stream().collect(Collectors.reducing("", Dish::getName, (acc, cur) -> acc + cur));
         System.out.println(result);
 
+        // joining 메서드 활용
+        String joining = menu.stream().map(Dish::getName).collect(Collectors.joining(","));
+        System.out.println(joining);
+
     }
 }
